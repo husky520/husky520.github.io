@@ -1,3 +1,7 @@
+body {
+  overflow-y: scroll;
+}
+
 /* color */
 a {
   color: #008573;
