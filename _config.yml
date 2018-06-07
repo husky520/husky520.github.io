@@ -1,0 +1,8 @@
+# Site settings
+title: 终端Terminal
+email: imaomh@gmail.com
+github_username:  husky520
+
+# Build settings
+markdown: kramdown
+highlighter: rouge

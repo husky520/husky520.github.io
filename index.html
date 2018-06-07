@@ -1,0 +1,28 @@
+---
+layout: master
+title: 首页
+full_posts: 11
+---
+
+<div class="am-list-news-bd">
+  <ul class="am-list">
+
+    {% for post in site.posts %}
+      {% if forloop.index < page.full_posts %}
+      <li class="am-g am-list-item-desced">
+        <a href="{{ post.url }}" class="am-list-item-hd">{{ post.title }}</a>
+        <div class="info">
+          <span class="icon am-icon-bullseye"></span><span>{{ post.date | date_to_string }}</span>
+          <span class="icon am-icon-bookmark"></span><span>{{ post.categories }}</span>
+        </div>
+        <div class="am-list-item-text my-article-list">{{ post.excerpt }}</div>
+      </li>
+
+      {% else %}
+        {% if forloop.index == page.full_posts %}
+        <div class="more"><a href="/list">更多文章 <span class="icon am-icon-angle-double-right"></span></a></div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,24 @@
+---
+layout: master
+title: 首页
+---
+
+<table class="am-table">
+  <thead>
+    <tr>
+      <th>全部文章</th>
+      <th></th> 
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in site.posts %}
+    <tr>
+      <td class="post-title">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </td>
+      
+      <td class="post-date">{{ post.date | date: "%Y-%m-%d"}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

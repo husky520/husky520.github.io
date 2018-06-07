@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>终端Terminal - {{page.title}}</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/master.css">
+</head>
+
+<body>
+<div class="page-wrapper">
+	<header class="am-g am-g-fixed my-head">
+	  <div class="am-u-md-12">
+	    <h1 class="am-article-title"><a href="/">终端Terminal</a></h1>
+	    <p class="am-article-meta">记录自己的每一段历程，这个世界你来过。</p>
+	  </div>
+	</header>
+
+	<div class="am-g am-g-fixed">
+	  <div class="am-u-md-9 am-u-md-push-3">
+	    <div class="am-g">
+	      <div class="am-u-sm-11 am-u-sm-centered">
+	        <div class="am-cf am-article">
+	          {{ content }}
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="am-u-md-3 am-u-md-pull-9 my-sidebar">
+	    <div class="am-offcanvas" id="sidebar">
+	      <div class="am-offcanvas-bar">
+	        <ul class="am-nav">
+	          <li class="my-sidebar-title"><a href="/">极客终端</a></li>
+	          <li class="am-nav-header">MENU</li>
+	          <li><a href="/list">文章列表</a></li>
+	          <li><a href="https://github.com/husky520" target="_blank">源码</a></li>
+	          <li><a href="/about">关于我</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+
+	  <a href="/#sidebar" class="am-btn am-btn-sm am-icon-bars am-show-sm-only my-button" data-am-offcanvas><span class="am-sr-only">侧栏导航</span></a>
+	</div>
+</div>
+
+<footer class="my-footer">
+  <p>&copy; Copyright 2018. by <a href="mailto:imaomh@gmail.com">imaomh@gmail.com</a>.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="/assets/js/amazeui.min.js"></script>
+</body>
+</html>
