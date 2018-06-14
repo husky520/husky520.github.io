@@ -211,7 +211,7 @@ html, body {
  * Syntax highlighting styles
  */
 .highlight { background: #fff; }
-.highlighter-rouge .highlight { background: #eef; }
+.highlighter-rouge .highlight { background: #eee; }
 .highlight .c {
   color: #998;
   font-style: italic; }

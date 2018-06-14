@@ -10,30 +10,30 @@ categories: node.js
 ## 0. 准备工作
 
 ### homebrew 安装 mongodb
-{% highlight text %}
+~~~
 brew install mongodb
-{% endhighlight %}
+~~~
 *注意：*
 *如果出现以下问题*
-{% highlight text %}
+~~~
 mongodb: A full installation of Xcode.app 8.3.2 is required to compile this software.
 Installing just the Command Line Tools is not sufficient.
 Xcode 8.3.2 cannot be installed on macOS 10.11.
 You must upgrade your version of macOS.
 Error: An unsatisfied requirement failed this build.
-{% endhighlight %}
+~~~
 *可以直接安装低版本的 mongodb, 例如 mongodb@3.4*
 
 创建默认数据库存放位置:
-{% highlight text %}
+~~~
 sudo mkdir /data
 sudo mkdir /data/db
-{% endhighlight %}
+~~~
 
 启动数据库
-{% highlight text %}
+~~~
 sudo mongod
-{% endhighlight %}
+~~~
 
 
 ***
@@ -42,7 +42,7 @@ sudo mongod
 项目 UI 使用 bootstrap, 后台使用 node.js 搭建, 具体为 express 搭建服务器, moogoose 连接 mongodb 数据库, jade 作为模版引擎, 另外还有 moment.js 用来格式化时间等 ...
 
 ### 目录结构预览
-{% highlight text %}
+~~~
 - movie-site         // 项目目录
   - schemas          // mongoose schemas
     movie.js         // scheme
@@ -59,23 +59,23 @@ sudo mongod
       admin.jade     // 后台录入页
     layout.jade      // 布局框架
   app.js             // 入口文件
-{% endhighlight %}
+~~~
 
 ### 页面路由
-{% highlight text %}
+~~~
 首页     http://localhost:3000/
 电影列表  http://localhost:3000/list
 电影详情  http://localhost:3000/movie/:id
 后台录入  http://localhost:3000/admin/movie
 后台更新  http://localhost:3000/admin/update/:id
-{% endhighlight %}
+~~~
 
 ***
 
 ## 2. 基本页面和初步的入口文件
 
 - **新建 app.js 入口文件**
-{% highlight javascript %}
+~~~ js
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -148,14 +148,14 @@ app.get('/admin/update/:id', function (req, res) {
 app.post('/admin/movie/new', function (req, res) {
     // ...
 })
-{% endhighlight %}
+~~~
 
 ***
 
 - **各页面模版**
 
 layout.jade
-{% highlight jade %}
+~~~ jade
 doctype
 html
     head
@@ -165,25 +165,25 @@ html
     body
         include ./includes/header
         block content
-{% endhighlight %}
+~~~
 
 head.jade  - **( 此处使用绝对路径, 否则子页面无法正确访问到静态资源 ! )**
-{% highlight jade %}
+~~~ jade
 link(href="/bootstrap/dist/css/bootstrap.css", rel="stylesheet")
 scritp(src="/jquery/dist/jquery.js")
 script(src="/bootstrap/dist/js/bootstrap.js")
-{% endhighlight %}
+~~~
 
 header.jade
-{% highlight jade %}
+~~~ jade
 .container
     .row
         .page-header
             h1= title
-{% endhighlight %}
+~~~
 
 index.jade
-{% highlight jade %}
+~~~ jade
 extends ../layout
 
 block content
@@ -197,10 +197,10 @@ block content
                         .caption
                             h3 #{item.title}
                             p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 欢迎观看预告片
-{% endhighlight %}
+~~~
 
 list.jade
-{% highlight jade %}
+~~~ jade
 extends ../layout
 
 block content
@@ -230,10 +230,10 @@ block content
                             td
                                 button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
 
-{% endhighlight %}
+~~~
 
 detail.jade
-{% highlight jade %}
+~~~ jade
 extends ../layout
 
 block content
@@ -255,10 +255,10 @@ block content
                     dd= movie.year
                     dt 简介
                     dd= movie.summary
-{% endhighlight %}
+~~~
 
 admin.jade
-{% highlight jade %}
+~~~ jade
 extends ../layout
 
 block content
@@ -301,7 +301,7 @@ block content
             .form-group.row
                 .offset-sm-2.col-sm-10
                     button.btn.btn-primary(type="submit") 录入
-{% endhighlight %}
+~~~
 
 ***
 
@@ -310,7 +310,7 @@ block content
 在 schemas 目录下创建 movie.js 文件, 导出 MovieSchema
 
 movie.js
-{% highlight javascript %}
+~~~ js
 const mongoose = require('mongoose')
 
 // 设计数据库结构
@@ -362,39 +362,39 @@ MovieSchema.statics = {
 
 module.exports = MovieSchema
 
-{% endhighlight %}
+~~~
 
 在 models 下创建 movie.js, 导出 model
-{% highlight javascript %}
+~~~ js
 const mongoose = require('mongoose')
 const MovieSchema = require('../schemas/movie')
 
 const Movie = mongoose.model('Movie', MovieSchema)
 
 module.exports = Movie
-{% endhighlight %}
+~~~
 
 ***
 
 - **连接数据库**
 
 app.js
-{% highlight javascript %}
+~~~ js
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/movie-site')  // movie-site 为数据库名
-{% endhighlight %}
+~~~
 
 ***
 
 - **数据的增删改查**
 
 首先引入创建的 model
-{% highlight javascript %}
+~~~ js
 const Movie = require('./models/movie')
-{% endhighlight %}
+~~~
 
 增
-{% highlight javascript %}
+~~~ js
 // 创建一个数据
 const data = new Movie({
     // 数据内容
@@ -409,10 +409,10 @@ Movie.save(function (err, data) {
     }
     // 其他操作 ...
 })
-{% endhighlight %}
+~~~
 
 删
-{% highlight javascript %}
+~~~ js
 // 删除 _id 为 id 的项, 并为结果作出相应的回应
 Movie.remove({'_id': id}, function (err) {
     if (err) {
@@ -422,10 +422,10 @@ Movie.remove({'_id': id}, function (err) {
         res.json({status: 1})
     }
 })
-{% endhighlight %}
+~~~
 
 改
-{% highlight javascript %}
+~~~ js
 // 这里使用一个插件 ‘underscore’
 const underscore = require('underscore')
 
@@ -439,10 +439,10 @@ Movie.save(function (err, data) {
     }
     // 其他操作 ...
 })
-{% endhighlight %}
+~~~
 
 查
-{% highlight javascript %}
+~~~ js
 // 使用在 ‘/schemas/ movie.js’ 中所封装的静态方法进行查询
 
 // 查询所有数据
@@ -460,7 +460,7 @@ Movie.findById(function (err, data) {
     }
     // 其他对已查询到的 data 的操作 ...
 })
-{% endhighlight %}
+~~~
 
 ***
 

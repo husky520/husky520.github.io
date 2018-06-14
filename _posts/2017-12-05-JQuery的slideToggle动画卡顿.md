@@ -9,7 +9,7 @@ categories: Javascript
 ![图1](http://upload-images.jianshu.io/upload_images/5908325-d16406dbdc394bba.png)
 
 JS代码如下（仅仅为了强调使用了slide动画...）：
-{% highlight javascript %}
+~~~ js
 $('.menu-item').click(function () {
       var $this = $(this);
 
@@ -23,12 +23,12 @@ $('.menu-item').click(function () {
             $this.siblings('.menu-item-second').slideDown('100');
       }
  });
-{% endhighlight %}
+~~~
 ***
 
 **原因**
 后来发现原因是在前面的 css 代码中，对执行动画的元素使用了`transition`属性，并且过渡的效果写的是`all`，代码如下：
-{% highlight css %}
+~~~ css
 .menu-item-second li {
     background-color: #ddd;
     transition: all 300ms;
@@ -36,14 +36,14 @@ $('.menu-item').click(function () {
 .menu-item-second li:hover {
     background-color: #fff;
 }
-{% endhighlight %}
+~~~
 ***
 
 **修改**
 修改后的代码将`all`属性改为`background-color`后恢复流畅效果！
-{% highlight css %}
+~~~ css
  transition: background-color 300ms;
-{% endhighlight %}
+~~~
 
 ***
 

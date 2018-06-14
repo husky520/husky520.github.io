@@ -8,22 +8,22 @@ categories: PHP
 
 ***
 
-##1. 安装 mySQL5.6+, php7.2+
+## 1. 安装 mySQL5.6+, php7.2+
 
 * 用 Homebrew 安装 mySQL
-{% highlight text %}
+~~~
 brew install mysql
-{% endhighlight %}
+~~~
 安装完成后会提示没有设置 root 密码, 需要按照终端提示设置密码, 注意权限问题
 
 * 用 Homebrew 安装 PHP
 由于 Mac 系统自带低版本 PHP, 则这一步实为升级
-{% highlight text %}
+~~~
 brew install php@7.2
-{% endhighlight %}
+~~~
 安装完成后在终端输入 `php -v` 命令发现还是低版本
 这时注意终端的提示的文字
-{% highlight text %}
+~~~
 To enable PHP in Apache add the following to httpd.conf and restart Apache:
     LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
 
@@ -42,31 +42,31 @@ To have launchd start php now and restart at login:
 Or, if you don't want/need a background service you can just run:
   php-fpm
 
-{% endhighlight %}
+~~~
 
 接下来的操作为:
 
 终端输入
-{% highlight text %}
+~~~
 cd /etc/apache2/
-{% endhighlight %}
+~~~
 编辑 httpd.conf 文件
-{% highlight text %}
+~~~
 sudo vim httpd.conf
-{% endhighlight %}
+~~~
 在文件末尾粘贴终端提示的两部分
-{% highlight text %}
+~~~
 LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
 
 <FilesMatch \.php$>
     SetHandler application/x-httpd-php
 </FilesMatch>
-{% endhighlight %}
+~~~
 这时, 在终端输入 `php -v` 命令看到已经升级
 
 ***
 
-##2. 安装 MAMP
+## 2. 安装 MAMP
 
 * 安装完成后打开 MAMP, 点击 Start Servers, 可以看到 Apache Server 和 MySQL Server 绿灯亮起
 
@@ -74,7 +74,7 @@ LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
 
 ***
 
-##3. 安装 Wordpress
+## 3. 安装 Wordpress
 
 * 下载并解压 Wordpress 的 zip 包
 
@@ -84,24 +84,24 @@ LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
 
 ***
 
-##4. 配置 Apache 虚拟主机
+## 4. 配置 Apache 虚拟主机
 
 这里暂停一下 Wordpress 的安装, 为了使用方便, 我们配置一下虚拟主机
 
 * 首先更改 hosts, 在终端输入
-{% highlight text %}
+~~~
 sudo vim /etc/hosts
-{% endhighlight %}
+~~~
 * 在后面追加 (其中的 banana 为主机名)
-{% highlight text %}
+~~~
 127.0.0.1    banana
-{% endhighlight %}
+~~~
 * 再打开 Apache 同目录下的配置文件
-{% highlight text %}
+~~~
 sudo vim /Applications/MAMP/conf/apache/httpd.conf
-{% endhighlight %}
+~~~
 * 末尾追加虚拟主机配置
-{% highlight text %}
+~~~
 # apache 虚拟主机配置文件
 
 NameVirtualHost *
@@ -127,12 +127,12 @@ NameVirtualHost *
     Allow from all
   </Directory>
 </VirtualHost>
-{% endhighlight %}
+~~~
 * 此时重启 MAMP 的 Servers , 在浏览中打开 `banana:8888` 就能看到和 `localhost:8888/banana` 相同的页面了
 
 ***
 
-##5. 继续安装 Wordpress
+## 5. 继续安装 Wordpress
 
 * 在 `banana:8888` 中我们开始安装, 按照提示我们需要填写一个数据库名, 以及能够访问该数据库的用户名和密码, 那么我们需要创建一个数据库
 
