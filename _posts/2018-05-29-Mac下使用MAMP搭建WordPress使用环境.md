@@ -11,18 +11,24 @@ categories: PHP
 ## 1. 安装 mySQL5.6+, php7.2+
 
 * 用 Homebrew 安装 mySQL
+
 ~~~
 brew install mysql
 ~~~
+
 安装完成后会提示没有设置 root 密码, 需要按照终端提示设置密码, 注意权限问题
 
 * 用 Homebrew 安装 PHP
+
 由于 Mac 系统自带低版本 PHP, 则这一步实为升级
+
 ~~~
 brew install php@7.2
 ~~~
+
 安装完成后在终端输入 `php -v` 命令发现还是低版本
 这时注意终端的提示的文字
+
 ~~~
 To enable PHP in Apache add the following to httpd.conf and restart Apache:
     LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
@@ -47,14 +53,19 @@ Or, if you don't want/need a background service you can just run:
 接下来的操作为:
 
 终端输入
+
 ~~~
 cd /etc/apache2/
 ~~~
+
 编辑 httpd.conf 文件
+
 ~~~
 sudo vim httpd.conf
 ~~~
+
 在文件末尾粘贴终端提示的两部分
+
 ~~~
 LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
 
@@ -62,6 +73,7 @@ LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
     SetHandler application/x-httpd-php
 </FilesMatch>
 ~~~
+
 这时, 在终端输入 `php -v` 命令看到已经升级
 
 ***
@@ -89,18 +101,25 @@ LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
 这里暂停一下 Wordpress 的安装, 为了使用方便, 我们配置一下虚拟主机
 
 * 首先更改 hosts, 在终端输入
+
 ~~~
 sudo vim /etc/hosts
 ~~~
+
 * 在后面追加 (其中的 banana 为主机名)
+
 ~~~
 127.0.0.1    banana
 ~~~
+
 * 再打开 Apache 同目录下的配置文件
+
 ~~~
 sudo vim /Applications/MAMP/conf/apache/httpd.conf
 ~~~
+
 * 末尾追加虚拟主机配置
+
 ~~~
 # apache 虚拟主机配置文件
 
@@ -128,6 +147,7 @@ NameVirtualHost *
   </Directory>
 </VirtualHost>
 ~~~
+
 * 此时重启 MAMP 的 Servers , 在浏览中打开 `banana:8888` 就能看到和 `localhost:8888/banana` 相同的页面了
 
 ***

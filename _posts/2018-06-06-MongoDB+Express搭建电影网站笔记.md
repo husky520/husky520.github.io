@@ -10,11 +10,14 @@ categories: node.js
 ## 0. 准备工作
 
 ### homebrew 安装 mongodb
+
 ~~~
 brew install mongodb
 ~~~
+
 *注意：*
 *如果出现以下问题*
+
 ~~~
 mongodb: A full installation of Xcode.app 8.3.2 is required to compile this software.
 Installing just the Command Line Tools is not sufficient.
@@ -22,15 +25,18 @@ Xcode 8.3.2 cannot be installed on macOS 10.11.
 You must upgrade your version of macOS.
 Error: An unsatisfied requirement failed this build.
 ~~~
+
 *可以直接安装低版本的 mongodb, 例如 mongodb@3.4*
 
 创建默认数据库存放位置:
+
 ~~~
 sudo mkdir /data
 sudo mkdir /data/db
 ~~~
 
 启动数据库
+
 ~~~
 sudo mongod
 ~~~
@@ -39,9 +45,11 @@ sudo mongod
 ***
 
 ## 1. 项目简介
+
 项目 UI 使用 bootstrap, 后台使用 node.js 搭建, 具体为 express 搭建服务器, moogoose 连接 mongodb 数据库, jade 作为模版引擎, 另外还有 moment.js 用来格式化时间等 ...
 
 ### 目录结构预览
+
 ~~~
 - movie-site         // 项目目录
   - schemas          // mongoose schemas
@@ -62,6 +70,7 @@ sudo mongod
 ~~~
 
 ### 页面路由
+
 ~~~
 首页     http://localhost:3000/
 电影列表  http://localhost:3000/list
@@ -75,6 +84,7 @@ sudo mongod
 ## 2. 基本页面和初步的入口文件
 
 - **新建 app.js 入口文件**
+
 ~~~ js
 const express = require('express')
 const path = require('path')
